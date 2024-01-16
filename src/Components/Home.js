@@ -12,7 +12,7 @@ const Home = () => {
 
         const query = event.target.value;
         // Create copy of item list
-        let updatedList = Data.filter(function (obj) { return SelectList.indexOf(obj) == -1; });
+        let updatedList = Data.filter(function (obj) { return SelectList.indexOf(obj) === -1; });
     
         // Include all elements which includes the search query
         updatedList = updatedList.filter((item) => {
@@ -36,7 +36,7 @@ const Home = () => {
         setdisplay(false)
         //clearing the input text
         document.getElementById('search').value = ''
-        let updatedList = Data.filter(function (obj) { return SelectList.indexOf(obj) == -1; });
+        let updatedList = Data.filter(function (obj) { return SelectList.indexOf(obj) === -1; });
         // Trigger render with updated values
         setFilteredList(updatedList);
         // e.target.value=''
@@ -58,6 +58,10 @@ const Home = () => {
       
         //clearing the input text
         document.getElementById('search').value = ''
+
+        let List = Data.filter(function (obj) { return SelectList.indexOf(obj) === -1; });
+        // Trigger render with updated values
+        setFilteredList(List);
     }
     let count;
     const handleKeyDown = event => {
@@ -65,15 +69,15 @@ const Home = () => {
 
         // console.log(message);
     
-        if (event.key === 'Backspace' && document.getElementById('search').value == '') {
+        if (event.key === 'Backspace' && document.getElementById('search').value === '') {
             // 👇️ your logic here
             
             count = count + 1;
-            if (count == 1)
+            if (count === 1)
             {
                 
             }
-            else if (count == 2)
+            else if (count === 2)
             {
                 
             }
@@ -116,7 +120,7 @@ const Home = () => {
                     {filteredList.map((data, index) => {
                         return (
                         <>
-                            { index==0? <li style={{ cursor: "pointer" }} onClick={(e) => { handleselecteditem(index, e) }} class=" wl-full border border-transparent flex bg-gray-200 items-center py-4 space-x-4 px-4">
+                            { index===0? <li style={{ cursor: "pointer" }} onClick={(e) => { handleselecteditem(index, e) }} class=" wl-full border border-transparent flex bg-gray-200 items-center py-4 space-x-4 px-4">
                                 <img class="w-16 h-16 rounded-full bg-gradient-to-br from-teal-400 to-blue-500" src={data.imgURL} alt="Avatar" />
                                 <div class="flex flex-row space-x-5">
                                     <span class="text-left text-gray-700 font-medium">{data.name}</span>
