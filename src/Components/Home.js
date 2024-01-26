@@ -18,17 +18,20 @@ const Home = () => {
         });
         // Trigger render with updated values
         setFilteredList(updatedList);
-    };
-    const handleselecteditem = (index) => {
-  
-        let arr = []
-        SelectList.forEach((data) => {
-            arr.push(data)
-        })
-        arr.push(filteredList[index])
-        filteredList.splice(index, 1);
-        setSelectedList(arr)
     
+    };
+    const handleselecteditem = (index,e) => {
+  
+        console.log('this is selected item ',Data.filter(item => item.id == index)[0])
+        const updatedarray = [...SelectList, Data.filter(item => item.id == index)[0]]
+        setSelectedList(updatedarray)
+
+        const updatedfilter = filteredList.filter(item => item.id != index)
+        setFilteredList(updatedfilter)
+        // filteredList.splice(index, 1);
+     
+        console.log(filteredList)
+        console.log('selected list is ',SelectList)
         setdisplay(false)
         //clearing the input text
          document.getElementById('search').value=''
@@ -37,17 +40,28 @@ const Home = () => {
     const handleunselecteditem = (index) => {
         // Create copy of item list
         let updatedList = [...SelectList];
+        const updatedarray = SelectList.filter(item => item.id != index)
+        console.log('updated selecetd list is ', updatedarray)
+        setSelectedList(updatedarray)
+        console.log('updsted list is',SelectList)
         //store previous data
-        let arr = []
-        filteredList.forEach((data) => {
-            arr.push(data)
-        })
-        arr.push(updatedList[updatedList.findIndex(({ id }) => id === index)])
-        setFilteredList(arr)
-        updatedList.splice(updatedList.findIndex(({ id }) => id === index), 1);
-        setSelectedList(updatedList)
+
+        const updatedfilter = [...filteredList, Data.filter(item => item.id == index)[0]]
+        setFilteredList(updatedfilter)
+        // let arr = []
+        // filteredList.forEach((data) => {
+        //     arr.push(data)
+        // })
+        // arr.push(updatedList[updatedList.findIndex(({ id }) => id === index)])
+        // // setFilteredList(arr)
+        // updatedList.splice(updatedList.findIndex(({ id }) => id === index), 1);
+        // setSelectedList(updatedList)
       
+        console.log(filteredList)
+
+        console.log('selected list is ', SelectList)
         //clearing the input text
+
         document.getElementById('search').value = ''
     }
     useEffect(() => {
@@ -77,7 +91,7 @@ const Home = () => {
                 <ul  style={{ display: display ? "" : "none" }} class="list-disc ml-2">
                     {filteredList.map((data, index) => {
                         return (
-                            <li style={{ cursor: "pointer" }} onClick={(e) =>{handleselecteditem(index,e)}} class=" wl-full border border-transparent flex hover:bg-gray-200 items-center py-4 space-x-4 px-4">
+                            <li style={{ cursor: "pointer" }} onClick={(e) =>{handleselecteditem(data.id,e)}} class=" wl-full border border-transparent flex hover:bg-gray-200 items-center py-4 space-x-4 px-4">
                                 <img class="w-16 h-16 rounded-full bg-gradient-to-br from-teal-400 to-blue-500" src={data.imgURL} alt="Avatar" />
                                 <div class="flex flex-row space-x-5">
                                     <span class="text-left text-gray-700 font-medium">{data.name}</span>
