@@ -5,13 +5,13 @@ const Home = () => {
     const [display, setdisplay] = useState(false)
     const [filteredList, setFilteredList] = useState(Data);
     const [SelectList,setSelectedList]=useState([])
-    const [UnselectList,setUnselectList]=useState([])
+    const [UnselectList,setUnselectList]=useState(Data)
     //search functionality
     const filterBySearch = (event) => {
         // Access input value
         const query = event.target.value;
         // Create copy of item list
-        let updatedList = [...Data];
+        let updatedList = [...UnselectList];
         // Include all elements which includes the search query
         updatedList = updatedList.filter((item) => {
             return item.name.toString().toLowerCase().indexOf(query.toLowerCase()) !== -1;
@@ -26,9 +26,10 @@ const Home = () => {
         const updatedarray = [...SelectList, Data.filter(item => item.id == index)[0]]
         setSelectedList(updatedarray)
 
-       
-        const updatedfilter = filteredList.filter(item => item.id != index)
+        // let updatedList = Data.filter(function (obj) { return SelectList.indexOf(obj) === -1; });
+        const updatedfilter = UnselectList.filter(item => item.id != index)
         setFilteredList(updatedfilter)
+        setUnselectList(updatedfilter)
         // filteredList.splice(index, 1);
      
         console.log('filter list is',filteredList)
@@ -40,15 +41,16 @@ const Home = () => {
     }
     const handleunselecteditem = (index) => {
         // Create copy of item list
-        let updatedList = [...SelectList];
+        // let updatedList = [...SelectList];
         const updatedarray = SelectList.filter(item => item.id != index)
         console.log('updated selecetd list is ', updatedarray)
         setSelectedList(updatedarray)
         console.log('updsted list is',SelectList)
         //store previous data
-
-        const updatedfilter = [...filteredList, Data.filter(item => item.id == index)[0]]
+        let updatedList = Data.filter(function (obj) { return SelectList.indexOf(obj) === -1; });
+        const updatedfilter = [...UnselectList, Data.filter(item => item.id == index)[0]]
         setFilteredList(updatedfilter)
+        setUnselectList(updatedfilter)
         // let arr = []
         // filteredList.forEach((data) => {
         //     arr.push(data)
