@@ -5,7 +5,7 @@ const Home = () => {
     const [display, setdisplay] = useState(false)
     const [filteredList, setFilteredList] = useState(Data);
     const [SelectList,setSelectedList]=useState([])
-
+    const [UnselectList,setUnselectList]=useState([])
     //search functionality
     const filterBySearch = (event) => {
         // Access input value
@@ -26,11 +26,12 @@ const Home = () => {
         const updatedarray = [...SelectList, Data.filter(item => item.id == index)[0]]
         setSelectedList(updatedarray)
 
+       
         const updatedfilter = filteredList.filter(item => item.id != index)
         setFilteredList(updatedfilter)
         // filteredList.splice(index, 1);
      
-        console.log(filteredList)
+        console.log('filter list is',filteredList)
         console.log('selected list is ',SelectList)
         setdisplay(false)
         //clearing the input text
