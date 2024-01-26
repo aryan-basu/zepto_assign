@@ -67,6 +67,31 @@ const Home = () => {
 
         document.getElementById('search').value = ''
     }
+    let count;
+    const handleKeyDown = event => {
+
+
+        // console.log(message);
+
+        if (event.key === 'Backspace' && document.getElementById('search').value === '') {
+            // 👇️ your logic here
+
+            count = count + 1;
+            if (count === 1) {
+
+            }
+            else if (count === 2) {
+
+            }
+            else {
+                count = 1;
+            }
+            console.log('Backspace key pressed ✅');
+        }
+        else {
+            count = 0;
+        }
+    }
     useEffect(() => {
        
     }, [filteredList,SelectList]) 
