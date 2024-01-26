@@ -22,48 +22,28 @@ const Home = () => {
     };
     const handleselecteditem = (index,e) => {
   
-        console.log('this is selected item ',Data.filter(item => item.id == index)[0])
+    
         const updatedarray = [...SelectList, Data.filter(item => item.id == index)[0]]
         setSelectedList(updatedarray)
-
-        // let updatedList = Data.filter(function (obj) { return SelectList.indexOf(obj) === -1; });
         const updatedfilter = UnselectList.filter(item => item.id != index)
         setFilteredList(updatedfilter)
         setUnselectList(updatedfilter)
-        // filteredList.splice(index, 1);
-     
-        console.log('filter list is',filteredList)
-        console.log('selected list is ',SelectList)
+   
         setdisplay(false)
         //clearing the input text
          document.getElementById('search').value=''
   
     }
     const handleunselecteditem = (index) => {
-        // Create copy of item list
-        // let updatedList = [...SelectList];
+
         const updatedarray = SelectList.filter(item => item.id != index)
-        console.log('updated selecetd list is ', updatedarray)
+   
         setSelectedList(updatedarray)
-        console.log('updsted list is',SelectList)
-        //store previous data
-        let updatedList = Data.filter(function (obj) { return SelectList.indexOf(obj) === -1; });
+
         const updatedfilter = [...UnselectList, Data.filter(item => item.id == index)[0]]
         setFilteredList(updatedfilter)
         setUnselectList(updatedfilter)
-        // let arr = []
-        // filteredList.forEach((data) => {
-        //     arr.push(data)
-        // })
-        // arr.push(updatedList[updatedList.findIndex(({ id }) => id === index)])
-        // // setFilteredList(arr)
-        // updatedList.splice(updatedList.findIndex(({ id }) => id === index), 1);
-        // setSelectedList(updatedList)
-      
-        console.log(filteredList)
-
-        console.log('selected list is ', SelectList)
-        //clearing the input text
+     
 
         document.getElementById('search').value = ''
     }
@@ -90,7 +70,7 @@ const Home = () => {
             else {
                 count = 1;
             }
-            console.log('Backspace key pressed ✅');
+         
         }
         else {
             count = 0;
