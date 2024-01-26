@@ -81,7 +81,11 @@ const Home = () => {
 
             }
             else if (count === 2) {
-
+                if (SelectList.length > 0)
+                {
+                    let data = SelectList[SelectList.length - 1];
+                    handleunselecteditem(data.id)
+                }
             }
             else {
                 count = 1;
@@ -112,7 +116,7 @@ const Home = () => {
                     )
                     })}
                   
-                    <input id="search" onClick={(e) => setdisplay(true)}  onChange={filterBySearch} type="text" class="w-full  text-gray-700 rounded-md py-2 pl-4 pr-3 sm:text-sm focus:outline-none " placeholder="" />
+                    <input id="search" onClick={(e) => setdisplay(true)} onKeyDown={(e) => { handleKeyDown(e) }}  onChange={filterBySearch} type="text" class="w-full  text-gray-700 rounded-md py-2 pl-4 pr-3 sm:text-sm focus:outline-none " placeholder="" />
 
                 </div>
                 <div class="h-1 bg-blue-500 w-full"></div>
